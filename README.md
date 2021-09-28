@@ -43,9 +43,9 @@ This problem asks you to do a lot of code reading, and a little code writing.
 
 In `lib/retail_transaction.rb`, you will find a rudimentary model of a sale on a point of sale system (or “cash register” as we normal humans call it). This class uses a gem called [Acts As State Machine](https://github.com/aasm/aasm) (“AASM” for short) to model the different states a transaction can be in:
 
-![Retail transaction states](doc/images/retail-transaction-states.svg)
+![Retail transaction states](doc/images/retail-transaction-states.png)
 
-Note how the `aasm` section in the code looks as if Ruby has some kind of built-in handling for states and events and transition rules. It doesn’t. The aasm gem added that.
+Note how the `aasm` section  in `retail_transaction.rb` looks as if Ruby has some kind of built-in handling for state machines. It doesn’t. The AASM library added that. Spend some time studying the correspondence between that code and the diagram above. (What is a "state?" An “event?” A “transition?”)
 
 Now take a look at `test/retail_transation_test.rb`. These tests describe all the expected behavior of a retail transaction in its various states. Things to note:
 
@@ -63,7 +63,7 @@ Note that these tests use methods that `RetailTransaction` does not actually dec
 
 **Your task** is to add and test a new `refunded` state and `refund` event, so that the state diagram now looks like this:
 
-![Retail transaction states after you've done your work](doc/images/retail-transaction-states-after.svg)
+![Retail transaction states after you've done your work](doc/images/retail-transaction-states-after.png)
 
 Adding the new state and new event will be easy; adding tests will be a little more tricky. Some hints:
 

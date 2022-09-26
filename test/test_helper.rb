@@ -41,7 +41,9 @@ class CustomReporter < Minitest::Reporters::DefaultReporter
   end
 end
 
-Minitest::Reporters.use! CustomReporter.new
+unless ENV['RM_INFO']  # RubyMine has its own way of handling test results
+  Minitest::Reporters.use! CustomReporter.new
+end
 
 module Minitest::Assertions
   def assert_invalid_transition

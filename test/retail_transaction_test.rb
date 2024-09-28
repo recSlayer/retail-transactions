@@ -12,6 +12,7 @@ describe RetailTransaction do
     assert_equal false, tx.processing_payment?
     assert_equal false, tx.settled?
     assert_equal false, tx.payment_declined?
+    assert_equal false, tx.refunded?
   end
 
   it "starts out empty" do
@@ -151,6 +152,20 @@ describe RetailTransaction do
 
     it "cannot be reopened" do
       assert_invalid_transition { tx.reopen! }
+    end
+  end
+
+  describe "refunded" do
+    before(:each) do
+      tx.add_item("bobcat")
+      tx.check_out!
+      tx.payment_info = "15 cents and a nail"
+      tx.process_payment!
+      tx.payment_authorized!
+      tx.refund!
+    end
+    it "cannot refund refunded" do
+      assert_invalid_transition{tx.refund!}
     end
   end
 end
